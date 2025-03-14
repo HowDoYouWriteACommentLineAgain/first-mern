@@ -1,5 +1,10 @@
-const express = require("express");
+const express = require("express"); 
 const cors = require("cors");
+/*
+requires are called node modules. 
+They are used to create servers. (create or accesss?)
+
+*/
 
 const app = express();
 app.use(cors());

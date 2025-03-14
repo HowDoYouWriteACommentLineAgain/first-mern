@@ -14,7 +14,7 @@ function App() {
 
   // Fetch tasks from the backend
   useEffect(() => {
-    axios.get("http://localhost:5000/tasks")
+    axios.get("http://localhost:5000/loginCredentials")
       .then(response => {
         setCredentialUsername(response.data.username);
         setCredentialPassword(response.data.password);
@@ -25,14 +25,14 @@ function App() {
 
 
   const checkCredentials = () => {
-    if(credentialUsername === inputU && credentialPassword === inputP){
-      alert("CREDENTIALS CONFIRMED, LOGGED IN");
-    } 
-    else{
-      console.log(credentialUsername);
-      console.log(credentialPassword);
-      alert("ERROR: CREDENTIALS NOT FOUND");
-    }
+    let serverResponse;
+    const sentCredentials = {recievedUsername:inputU,recievedPassword:inputP}    
+    axios.post("http://localhost:5000/loginCredentials",sentCredentials)
+      .then(response =>{
+        serverResponse = response.data;
+        alert(serverResponse.message);
+      }).catch(error => console.error("Error: ", error));
+    
   }
 
 

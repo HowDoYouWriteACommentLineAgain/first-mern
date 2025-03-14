@@ -5,24 +5,33 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let tasks = {username:"john",password:"doe"}; // In-memory storage for tasks
+let loginCredentials = {username:"john",password:"doe"}; // In-memory storage for tasks
+let recievedCredentials = {recievedUsername:"", recievedPassword:""};
 
 // Get all tasks
-app.get("/tasks", (req, res) => {
-  res.json(tasks);
+app.get("/getAll", (req, res) => {
+res.json({loginCredentials,recievedCredentials});
 });
 
-// Add a new task
-app.post("/tasks", (req, res) => {
-  const task = { id: tasks.length + 1, text: req.body.text };
-  tasks.push(task);
-  res.json(task);
+// checkCredentials
+app.post("/loginCredentials", (req, res) => {
+  recievedCredentials = { 
+      recievedUsername:req.body.recievedUsername,
+      recievedPassword:req.body.recievedPassword
+    };
+
+  if(loginCredentials.username === recievedCredentials.recievedUsername && loginCredentials.password === recievedCredentials.recievedPassword){
+    res.json({status:"success",message:`Welcome ${recievedCredentials.recievedUsername}`});
+  }else{
+    res.json({status:"failed",message:"Please try again."});
+  }
+  
 });
 
 // Delete a task
-app.delete("/tasks/:id", (req, res) => {
+app.delete("/loginCredentials/:id", (req, res) => {
   tasks = tasks.filter(task => task.id !== parseInt(req.params.id));
-  res.json({ message: "Task deleted" });
+  res.json({ message: "loginCredentials deleted" });
 });
 
 // Start the server
@@ -30,3 +39,13 @@ app.listen(5000, () => console.log("Server running on port 5000"));
 
 //code for server.js
  
+
+//notes
+
+/*
+
+in post and get etc. the callback fn after the url is req and res
+  req is what is being sent into
+  res is what is being sent back. It is the response.data 
+
+ */

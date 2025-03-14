@@ -5,13 +5,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-let loginCredentials = {username:"john",password:"doe"}; // In-memory storage for tasks
+let loginCredentials = {username:"john",password:"doe"}; // In-memory storage for credentials
 let recievedCredentials = {recievedUsername:"", recievedPassword:""};
 
 // Get all tasks
 app.get("/getAll", (req, res) => {
 res.json({loginCredentials,recievedCredentials});
 });
+//displays stuff
 
 // checkCredentials
 app.post("/loginCredentials", (req, res) => {
@@ -28,7 +29,7 @@ app.post("/loginCredentials", (req, res) => {
   
 });
 
-// Delete a task
+// Delete a task NOT USEDs
 app.delete("/loginCredentials/:id", (req, res) => {
   tasks = tasks.filter(task => task.id !== parseInt(req.params.id));
   res.json({ message: "loginCredentials deleted" });

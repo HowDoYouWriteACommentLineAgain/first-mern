@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios"; //npm install axios
 
 function App() {
-  // const [tasks, setTasks] = useState([]);
-  // const [taskText, setTaskText] = useState("");
 
   const [credentialUsername, setCredentialUsername] = useState("");
   const [credentialPassword, setCredentialPassword] = useState("");

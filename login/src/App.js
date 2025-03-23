@@ -32,7 +32,17 @@ function App() {
       }).catch(error => console.error("Error: ", error));
     
   }
-
+  // async function checkCredentials(){
+  //   try{
+  //     const sentCredentials = {recievedUsername:inputU,recievedPassword:inputP}; 
+  //     // const response = await axios.post("http://localhost:5000/loginCredentials",sentCredentials);
+  //     // alert(response.data.message);
+  //     alert((await axios.post("http://localhost:5000/loginCredentials",sentCredentials)).data.message)
+  //   } catch (error){
+  //     console.error("Error",error);
+  //   }
+  // }
+        
 
   return (
     <div style={{ textAlign: "center", marginTop: "50px", width:"10rem", margin:"auto"}}>
